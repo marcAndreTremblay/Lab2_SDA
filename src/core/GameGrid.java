@@ -1,14 +1,19 @@
-import java.io.*;
-import java.util.*;
+package core;
 
-public class Main
-{
-	//List des solution
-	//List des nobmres de noeud parcourur
-	//Temps d'execution (apres loading, non affichage)
-	//Afficher la solution finale
-    
-	public static void PrintGrid(int grid_size, int[] grid_data){
+import java.io.*;
+
+public class GameGrid {
+	
+	public int [] grid_data;
+	public int grid_size;
+	int grid_x;
+	int grid_y;
+	GameGrid(int x,int y){
+		grid_x = x;
+		grid_y = y;
+		grid_size = grid_x*grid_y;
+	}
+	public void PrintToCmd(){
 		System.out.print('\n');
 		for(int i = 0; i < grid_size; i++){
 			if(i%7 == 0){
@@ -18,8 +23,10 @@ public class Main
 			
 		}
 	}
-	public static boolean ReadGridFile(int grid_size, int[] grid_data){
+	public boolean LoadFromFile(char[] file_name){
+		grid_data = new int[this.grid_size];
 		boolean Status = true;
+		
 		int c;
 		int current_index = 0;
 		int item_loaded_cpt = 0;
@@ -28,8 +35,6 @@ public class Main
 			br = new BufferedReader(new FileReader("test.puzzle"));
 	
 			while ((c = br.read()) != -1) {
-			    //Since c is an integer, cast it to a char. If it isn't -1, it will be in the correct range of char.
-				
 				if(c == 48){ //0	
 					grid_data[current_index] = 0;
 					current_index++;
@@ -61,17 +66,4 @@ public class Main
 		}
 		return Status;
 	}
-	
-	
-	public static void main(String[] args)
-    {		
-			int grid_size = 7*7;	
-			int[] grid_data = new int[grid_size];
-			
-			boolean isSuccess =  ReadGridFile(grid_size,grid_data);
-			if(isSuccess == true){
-				PrintGrid(grid_size,grid_data);			
-			}
-	
-    }
 }
