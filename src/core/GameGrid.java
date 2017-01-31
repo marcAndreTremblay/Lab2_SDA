@@ -35,7 +35,7 @@ public class GameGrid {
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader("test.puzzle"));
-	
+	 
 			while ((c = br.read()) != -1) {
 				if(c == 48){ //0	
 					grid_data[current_index] = 0;
@@ -77,28 +77,38 @@ public class GameGrid {
 					if(grid_data[i-grid_x] == 1 && grid_data[i-grid_x*2] == 2){ //Check if top is clear move
 						result.add(new GameMove(i,i-grid_x*2));
 					}
-				}
-				//Check bottom side
+				} 
 				if(i+grid_x < grid_size &&  i+grid_x*2 < grid_size){ //Check if bottom side is in play
 					if(grid_data[i+grid_x] == 1 && grid_data[i+grid_x*2] == 2){ //Check if bottom is clear move
 						result.add(new GameMove(i,i+grid_x*2));
 					}
 				}
 				
+					int max, min;
+					//Check right
+					min  = i - i %grid_x;
+					max = min+grid_x-1;
+					System.out.println("min "+min + " max "+max);
+				
+				
+				
+				
 				//Check left side
-				if( i%7 != 0 && (i-1)%7 != 0 && (i-2)%7 != 0){ //If on the left side
+				if(i > min && i-1 > min && i-2 > min ){
 					if(grid_data[i-1] == 1 && grid_data[i-2] == 2){ //Check if left is a clear move
-						result.add(new GameMove(i,i-2));
+							result.add(new GameMove(i,i-2));
 					}
 				}
 				
 				
 				//Check right side
-				if( i%6 != 0 && (i+1)%6 != 0 && (i+2)%6 != 0){ //If on the left side
+				if(i < max && i+1 < max && i+2 < max ){
 					if(grid_data[i+1] == 1 && grid_data[i+2] == 2){ //Check if left is a clear move
 						result.add(new GameMove(i,i+2));
 					}
 				}
+				//Check left
+				
 				
 			}
 		}		

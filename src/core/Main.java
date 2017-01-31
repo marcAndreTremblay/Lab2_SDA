@@ -19,47 +19,6 @@ public class Main
 			
 		}
 	}
-	public static boolean ReadGridFile(int grid_size, int[] grid_data){
-		boolean Status = true;
-		int c;
-		int current_index = 0;
-		int item_loaded_cpt = 0;
-		BufferedReader br;
-		try {
-			br = new BufferedReader(new FileReader("test.puzzle"));
-	
-			while ((c = br.read()) != -1) {
-				if(c == 48){ //0	
-					grid_data[current_index] = 0;
-					current_index++;
-				}
-				if (c == 49){ //1
-					grid_data[current_index] = 1;
-					current_index++;
-				}
-				if (c == 50) {//2	
-					grid_data[current_index] = 2;
-					current_index++;
-				}
-				
-			      
-			}
-			
-			if(current_index != grid_size){
-				System.out.print("Could't load all the grid data\n");
-				Status = false;
-			}
-		} catch (FileNotFoundException e) {
-			Status = false;
-			e.printStackTrace();
-			System.out.print(e.toString() +"\n");
-		} catch (IOException e) {
-			Status = false;
-			e.printStackTrace();
-			System.out.print(e.toString() +"\n");			
-		}
-		return Status;
-	}
 	
 
 	
