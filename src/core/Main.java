@@ -61,13 +61,7 @@ public class Main
 		return Status;
 	}
 	
-	public static List<GameMove> FindAvailableMove(GameGrid loaded_grid){
-		List<GameMove> move_list = new ArrayList();
-		
-		//Todo(Marc): Implement this
-		
-		return move_list;
-	}
+
 	
 	public static void main(String[] args)
     {		
@@ -80,7 +74,7 @@ public class Main
 			}
 			
 			//Find the first possible moves
-			List<GameMove> found_moves = FindAvailableMove(loaded_grid); 
+			List<GameMove> found_moves = loaded_grid.GetAvailableMove(); 
 			
 			//For each of those move check if there is a solution to the puzzle
 				//Back tracking algo here

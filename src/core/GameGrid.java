@@ -1,6 +1,7 @@
 package core;
 
 import java.io.*;
+import java.util.List;
 
 public class GameGrid {
 	
@@ -16,7 +17,7 @@ public class GameGrid {
 	public void PrintToCmd(){
 		System.out.print('\n');
 		for(int i = 0; i < grid_size; i++){
-			if(i%7 == 0){
+			if(i%grid_x == 0){
 				System.out.print('\n');
 			}
 			System.out.print(grid_data[i]);
@@ -66,4 +67,8 @@ public class GameGrid {
 		}
 		return Status;
 	}
+	public List<GameMove> GetAvailableMove(){
+		return null;
+	}
 }
+ 
