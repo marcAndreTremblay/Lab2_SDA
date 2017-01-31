@@ -80,6 +80,9 @@ public class Main
 				//Back tracking algo here
 				//
 			
-	
+			System.out.println('\n');
+			for(GameMove current_move :found_moves){
+				current_move.PrintOutCmd();
+			}
     }
 }

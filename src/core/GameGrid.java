@@ -72,39 +72,34 @@ public class GameGrid {
 		List<GameMove> result = new LinkedList<GameMove>();		
 		for(int i =0;i<this.grid_size;i++){
 			if(grid_data[i] != 0 || grid_data[i] != 2){ //Check if its a 'Pion'
-				
 				//Check top side
 				if(i-grid_x >= 0 &&  i-grid_x*2 >= 0){ //Check if top side is in play
 					if(grid_data[i-grid_x] == 1 && grid_data[i-grid_x*2] == 2){ //Check if top is clear move
-						
+						result.add(new GameMove(i,i-grid_x*2));
 					}
 				}
 				//Check bottom side
 				if(i+grid_x < grid_size &&  i+grid_x*2 < grid_size){ //Check if bottom side is in play
 					if(grid_data[i+grid_x] == 1 && grid_data[i+grid_x*2] == 2){ //Check if bottom is clear move
-						
+						result.add(new GameMove(i,i+grid_x*2));
 					}
 				}
+				
 				//Check left side
-				if((i-1)%6 == 0 || (i-2)%6 == 0){ //If on the left side
-					//To close to the left edge
-				}
-				else{
-					//Check if clean move possible
+				if( i%7 != 0 && (i-1)%7 != 0 && (i-2)%7 != 0){ //If on the left side
 					if(grid_data[i-1] == 1 && grid_data[i-2] == 2){ //Check if left is a clear move
-						
+						result.add(new GameMove(i,i-2));
 					}
 				}
+				
+				
 				//Check right side
-				if((i+1)%7 == 0 || (i+2)%7 == 0){ //Check if right side clear to check
-					//To close to the right edge
-				}
-				else{
-					//Check if clean move possible
-					if(grid_data[i+1] == 1 && grid_data[i+2] == 2){ //Check if bottom is clear move
-						
+				if( i%6 != 0 && (i+1)%6 != 0 && (i+2)%6 != 0){ //If on the left side
+					if(grid_data[i+1] == 1 && grid_data[i+2] == 2){ //Check if left is a clear move
+						result.add(new GameMove(i,i+2));
 					}
 				}
+				
 			}
 		}		
 		return result;

@@ -7,4 +7,7 @@ public class GameMove {
 		this.start_index = start;
 		this.end_index = end;
 	}
+	public void PrintOutCmd(){
+		System.out.print("From "+start_index + " To " +end_index+'\n');
+	}
 }
