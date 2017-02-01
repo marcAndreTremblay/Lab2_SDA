@@ -115,7 +115,7 @@ public class GameGrid {
 	public void ResetMonitoring(){
 		max_dept=0;
 		node_visited_cpt=0;
-		dept_limit = 100;
+		dept_limit = 20;
 	}
 	
 	private int CountGridPin(){
