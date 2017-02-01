@@ -10,6 +10,7 @@ public class GameGrid {
 	public int grid_size;
 	int grid_x;
 	int grid_y;
+	String loaded_file_name;
 	GameGrid(int x,int y){
 		grid_x = x;
 		grid_y = y;
@@ -18,7 +19,7 @@ public class GameGrid {
 	public void PrintToCmd(){
 		System.out.print('\n');
 		for(int i = 0; i < grid_size; i++){
-			if(i%grid_x == 0){
+			if(i%grid_x == 0 && i !=0){
 				System.out.print('\n');
 			}
 			System.out.print(grid_data[i]);
@@ -26,6 +27,7 @@ public class GameGrid {
 		}
 	}
 	public boolean LoadFromFile(String file_name){
+		this.loaded_file_name = file_name;
 		grid_data = new int[this.grid_size];
 		boolean Status = true;
 		
@@ -68,6 +70,34 @@ public class GameGrid {
 		}
 		return Status;
 	}
+	
+	//Data for algo analyse
+	int max_dept;
+	int node_visited_cpt;
+	int dept_limit; 
+	public void ResetMonitoring(){
+		max_dept=0;
+		node_visited_cpt=0;
+		dept_limit = 20;
+	}
+	
+	private int CountGridPin(){
+		int cpt = 0;
+		for(int i = 0;i<this.grid_size;i++){
+			if(grid_data[i] == 1) {cpt++;}
+		}
+		return cpt;
+	}
+	private void ApplyMove(GameMove to_move){
+		grid_data[to_move.start_index] = 2;
+		grid_data[to_move.middle_index] = 2;
+		grid_data[to_move.end_index] = 1;
+	}
+	private void UndoMove(GameMove to_move){
+		grid_data[to_move.start_index] = 1;
+		grid_data[to_move.middle_index] = 1;
+		grid_data[to_move.end_index] = 2;
+	}
 	public List<GameMove> GetAvailableMove(){
 		List<GameMove> result = new LinkedList<GameMove>();		
 		for(int i =0;i<this.grid_size;i++){
@@ -106,34 +136,6 @@ public class GameGrid {
 			}
 		}		
 		return result;
-	}
-	
-	//Data for algo analyse
-	int max_dept;
-	int node_visited_cpt;
-	int dept_limit;
-	public void ResetMonitoring(){
-		max_dept=0;
-		node_visited_cpt=0;
-		dept_limit = 20;
-	}
-	
-	private int CountGridPin(){
-		int cpt = 0;
-		for(int i = 0;i<this.grid_size;i++){
-			if(grid_data[i] == 1) {cpt++;}
-		}
-		return cpt;
-	}
-	private void ApplyMove(GameMove to_move){
-		grid_data[to_move.start_index] = 2;
-		grid_data[to_move.middle_index] = 2;
-		grid_data[to_move.end_index] = 1;
-	}
-	private void UndoMove(GameMove to_move){
-		grid_data[to_move.start_index] = 1;
-		grid_data[to_move.middle_index] = 1;
-		grid_data[to_move.end_index] = 2;
 	}
 	
 	public boolean FindSolution(List<GameMove> solution_move){	

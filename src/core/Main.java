@@ -20,7 +20,7 @@ public class Main
 			GameGrid loaded_grid = new GameGrid(7,7);
 				boolean isSuccess =  loaded_grid.LoadFromFile("test.puzzle");
 			if(isSuccess == true){
-				System.out.print("Solution initiale");
+				System.out.print("Solution initiale\n");
 				loaded_grid.PrintToCmd();			
 			}
 			List<GameMove> found_moves = loaded_grid.GetAvailableMove(); 
@@ -40,7 +40,8 @@ public class Main
 				boolean result = loaded_grid.FindSolution(solution_move);
 			timer.StopTime();
 			
-			System.out.println("\n**************************\n");
+			System.out.println("\n**************************");
+			System.out.println("File name : " + loaded_grid.loaded_file_name+"\n");
 			if(result == false){
 				System.out.println("Pas de solution");
 			}
@@ -61,7 +62,7 @@ public class Main
 			}
 			
 			
-			System.out.print("\nFinal grid");
+			System.out.print("Final grid\n");
 			loaded_grid.PrintToCmd();
     }
 }
