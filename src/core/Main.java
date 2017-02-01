@@ -26,7 +26,7 @@ public class Main
 			List<GameMove> found_moves = loaded_grid.GetAvailableMove(); 
 			
 			
-			System.out.println('\n');
+			System.out.println("\nInitial possibility\n");
 			for(GameMove current_move :found_moves){
 				current_move.PrintOutCmd();
 			}
@@ -46,7 +46,7 @@ public class Main
 				System.out.println("Dept limitation :"+loaded_grid.dept_limit);
 			}
 			else{
-				System.out.println("\nSolution");
+				System.out.println("\nSolution in " +solution_move.size() +" moves");
 				System.out.println("Time : "+timer.LastDelta + " millsec");
 				System.out.println("Node visited :"+loaded_grid.node_visited_cpt);
 				System.out.println("Dept require :"+loaded_grid.max_dept);

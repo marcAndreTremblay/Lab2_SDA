@@ -111,11 +111,11 @@ public class GameGrid {
 	//Data for algo analyse
 	int max_dept;
 	int node_visited_cpt;
-	int dept_limit = 20;
+	int dept_limit;
 	public void ResetMonitoring(){
 		max_dept=0;
 		node_visited_cpt=0;
-		dept_limit = 20;
+		dept_limit = 100;
 	}
 	
 	private int CountGridPin(){
@@ -135,11 +135,11 @@ public class GameGrid {
 		grid_data[to_move.middle_index] = 1;
 		grid_data[to_move.end_index] = 2;
 	}
-	//a solution is a success if the end move make one pin left alone
+	
 	public boolean FindSolution(List<GameMove> solution_move){	
 		return this.FindSolution(solution_move,1);
 	}
-	public boolean FindSolution(List<GameMove> solution_move,int algo_dept){	
+	private boolean FindSolution(List<GameMove> solution_move,int algo_dept){	
 		node_visited_cpt++;
 		if(algo_dept > dept_limit) {
 			//dept_limit += dept_limit/4;
