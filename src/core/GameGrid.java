@@ -137,7 +137,7 @@ public class GameGrid {
 	}
 	//a solution is a success if the end move make one pin left alone
 	public boolean FindSolution(List<GameMove> solution_move){	
-		return this.FindSolution(solution_move,0);
+		return this.FindSolution(solution_move,1);
 	}
 	public boolean FindSolution(List<GameMove> solution_move,int algo_dept){	
 		node_visited_cpt++;
