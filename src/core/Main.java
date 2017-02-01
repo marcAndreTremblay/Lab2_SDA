@@ -32,12 +32,16 @@ public class Main
 			
 			
 			List<GameMove> solution_move  = new LinkedList();
+			loaded_grid.ResetMonitoring();
 			boolean result = loaded_grid.FindSolution(solution_move);
 			if(result == false){
 				System.out.println("\nPas de solution");
+				System.out.println("\nNode visited :"+loaded_grid.node_visited_cpt);
 			}
 			else{
 				System.out.println("\nSolution");
+				System.out.println("\nNode visited :"+loaded_grid.node_visited_cpt);
+				System.out.println("\nDept require :"+loaded_grid.max_dept);
 				System.out.println("Last\n");
 				for(GameMove current_move :solution_move){
 					current_move.PrintOutCmd();

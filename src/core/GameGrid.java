@@ -108,7 +108,13 @@ public class GameGrid {
 		return result;
 	}
 	
-	
+	//Data for algo analyse
+	int max_dept;
+	int node_visited_cpt;
+	public void ResetMonitoring(){
+		max_dept=0;
+		node_visited_cpt=0;
+	}
 	
 	private int CountGridPin(){
 		int cpt = 0;
@@ -129,6 +135,13 @@ public class GameGrid {
 	}
 	//a solution is a success if the end move make one pin left alone
 	public boolean FindSolution(List<GameMove> solution_move){	
+		return this.FindSolution(solution_move,0);
+	}
+	public boolean FindSolution(List<GameMove> solution_move,int algo_dept){	
+		node_visited_cpt++;
+		if(algo_dept > max_dept){
+			max_dept = algo_dept;
+		}
 		List<GameMove> available_move = this.GetAvailableMove();
 		if(available_move.size() == 0){
 			if(this.CountGridPin() == 1){
@@ -141,7 +154,7 @@ public class GameGrid {
 		else{
 			for(GameMove current_move : available_move){
 				ApplyMove(current_move);
-				boolean result = this.FindSolution(solution_move);
+				boolean result = this.FindSolution(solution_move,algo_dept++);
 				if(result == true){
 					solution_move.add(current_move);
 					return true;
