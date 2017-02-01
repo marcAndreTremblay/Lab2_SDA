@@ -10,6 +10,6 @@ public class GameMove {
 		this.end_index = end;
 	}
 	public void PrintOutCmd(){
-		System.out.print("From "+start_index + " To " +end_index+ " over "+middle_index+'\n');
+		System.out.print("	From "+start_index + " To " +end_index+ " over "+middle_index+'\n');
 	}
 }

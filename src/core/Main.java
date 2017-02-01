@@ -26,7 +26,7 @@ public class Main
 			List<GameMove> found_moves = loaded_grid.GetAvailableMove(); 
 			
 			
-			System.out.println("\nInitial possibility\n");
+			System.out.println("\n\nInitial possible moves\n");
 			for(GameMove current_move :found_moves){
 				current_move.PrintOutCmd();
 			}
@@ -35,28 +35,31 @@ public class Main
 			
 			List<GameMove> solution_move  = new LinkedList();
 			loaded_grid.ResetMonitoring();
+			
 			timer.StartTime();
-			boolean result = loaded_grid.FindSolution(solution_move);
+				boolean result = loaded_grid.FindSolution(solution_move);
 			timer.StopTime();
+			
+			System.out.println("\n**************************\n");
 			if(result == false){
-				System.out.println("\nPas de solution");
-				System.out.println("Time : "+timer.LastDelta + " millsec");
-				System.out.println("Node visited :"+loaded_grid.node_visited_cpt);
-				System.out.println("Dept require :"+loaded_grid.max_dept);
-				System.out.println("Dept limitation :"+loaded_grid.dept_limit);
+				System.out.println("Pas de solution");
 			}
 			else{
-				System.out.println("\nSolution in " +solution_move.size() +" moves");
-				System.out.println("Time : "+timer.LastDelta + " millsec");
-				System.out.println("Node visited :"+loaded_grid.node_visited_cpt);
-				System.out.println("Dept require :"+loaded_grid.max_dept);
-				System.out.println("Dept limitation :"+loaded_grid.dept_limit);
-				System.out.println("\nLast to first\n");
+				System.out.println("Solution in " +solution_move.size() +" moves");
+			}
+			System.out.println("	Time : "+timer.LastDelta + " millsec");
+			System.out.println("	Node visited :"+loaded_grid.node_visited_cpt);
+			System.out.println("	Dept require :"+loaded_grid.max_dept);
+			System.out.println("	Dept limitation :"+loaded_grid.dept_limit);
+			
+			if(solution_move.size() > 0){
+				System.out.println("\nMove from last to first\n");
 				for(GameMove current_move :solution_move){
 					current_move.PrintOutCmd();
 				}
-				System.out.println("\nFirst\n");
+				System.out.println("\n**************************\n");
 			}
+			
 			
 			System.out.print("\nFinal grid");
 			loaded_grid.PrintToCmd();
