@@ -111,9 +111,11 @@ public class GameGrid {
 	//Data for algo analyse
 	int max_dept;
 	int node_visited_cpt;
+	int dept_limit = 20;
 	public void ResetMonitoring(){
 		max_dept=0;
 		node_visited_cpt=0;
+		dept_limit = 20;
 	}
 	
 	private int CountGridPin(){
@@ -139,6 +141,10 @@ public class GameGrid {
 	}
 	public boolean FindSolution(List<GameMove> solution_move,int algo_dept){	
 		node_visited_cpt++;
+		if(algo_dept > dept_limit) {
+			//dept_limit += dept_limit/4;
+			return false;
+		}
 		if(algo_dept > max_dept){
 			max_dept = algo_dept;
 		}

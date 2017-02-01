@@ -14,6 +14,8 @@ public class Main
 	
 	public static void main(String[] args)
     {		
+			FastTimer timer = new FastTimer();
+		
 		
 			GameGrid loaded_grid = new GameGrid(7,7);
 				boolean isSuccess =  loaded_grid.LoadFromFile("test.puzzle");
@@ -33,16 +35,19 @@ public class Main
 			
 			List<GameMove> solution_move  = new LinkedList();
 			loaded_grid.ResetMonitoring();
+			timer.StartTime();
 			boolean result = loaded_grid.FindSolution(solution_move);
+			timer.StopTime();
 			if(result == false){
 				System.out.println("\nPas de solution");
-				System.out.println("\nNode visited :"+loaded_grid.node_visited_cpt);
+				System.out.println("Node visited :"+loaded_grid.node_visited_cpt);
 			}
 			else{
 				System.out.println("\nSolution");
-				System.out.println("\nNode visited :"+loaded_grid.node_visited_cpt);
-				System.out.println("\nDept require :"+loaded_grid.max_dept);
-				System.out.println("Last\n");
+				System.out.println("Time : "+timer.LastDelta + " millsec");
+				System.out.println("Node visited :"+loaded_grid.node_visited_cpt);
+				System.out.println("Dept require :"+loaded_grid.max_dept);
+				System.out.println("\nLast to first\n");
 				for(GameMove current_move :solution_move){
 					current_move.PrintOutCmd();
 				}
