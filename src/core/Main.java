@@ -33,11 +33,17 @@ public class Main
 			
 			List<GameMove> solution_move  = new LinkedList();
 			boolean result = loaded_grid.FindSolution(solution_move);
-			System.out.println("\nSolution"+'\n');
-			for(GameMove current_move :solution_move){
-				current_move.PrintOutCmd();
+			if(result == false){
+				System.out.println("\nPas de solution");
 			}
-			
+			else{
+				System.out.println("\nSolution");
+				System.out.println("Last\n");
+				for(GameMove current_move :solution_move){
+					current_move.PrintOutCmd();
+				}
+				System.out.println("\nFirst\n");
+			}
 			
 			System.out.print("\nFinal grid");
 			loaded_grid.PrintToCmd();
