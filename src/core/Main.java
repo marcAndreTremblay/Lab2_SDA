@@ -18,7 +18,7 @@ public class Main
 		
 		
 			GameGrid loaded_grid = new GameGrid(7,7);
-				boolean isSuccess =  loaded_grid.LoadFromFile("test2.puzzle");
+				boolean isSuccess =  loaded_grid.LoadFromFile("test.puzzle");
 			if(isSuccess == true){
 				System.out.print("Solution initiale");
 				loaded_grid.PrintToCmd();			
@@ -43,12 +43,14 @@ public class Main
 				System.out.println("Time : "+timer.LastDelta + " millsec");
 				System.out.println("Node visited :"+loaded_grid.node_visited_cpt);
 				System.out.println("Dept require :"+loaded_grid.max_dept);
+				System.out.println("Dept limitation :"+loaded_grid.dept_limit);
 			}
 			else{
 				System.out.println("\nSolution");
 				System.out.println("Time : "+timer.LastDelta + " millsec");
 				System.out.println("Node visited :"+loaded_grid.node_visited_cpt);
 				System.out.println("Dept require :"+loaded_grid.max_dept);
+				System.out.println("Dept limitation :"+loaded_grid.dept_limit);
 				System.out.println("\nLast to first\n");
 				for(GameMove current_move :solution_move){
 					current_move.PrintOutCmd();
